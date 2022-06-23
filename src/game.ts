@@ -8,10 +8,10 @@ import backgroundImage from "./images/background.png"
 // Create Game class
 //
 class Game {
-    enemy: Enemy
-    pixi: PIXI.Application
-    loader: PIXI.Loader
-    enemies: Enemy[] = []
+    private enemy: Enemy
+    public pixi: PIXI.Application
+    public loader: PIXI.Loader
+    private enemies: Enemy[] = []
 
     constructor() {
         this.pixi = new PIXI.Application({ width: 800, height: 450 })
@@ -24,7 +24,7 @@ class Game {
         this.pixi.loader.load(() => this.loadCompleted())
     }
 
-    loadCompleted() {
+    private loadCompleted() {
         const background = new PIXI.TilingSprite(this.pixi.loader.resources["backgroundTexture"].texture!,
             this.pixi.screen.width,
             this.pixi.screen.height)
@@ -51,7 +51,7 @@ class Game {
         }
     }
 
-    update(delta: number) {
+    public update(delta: number) {
         for (let enemy of this.enemies) {
             enemy.update(delta)
         }
